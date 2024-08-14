@@ -65,6 +65,7 @@ class OpenAIChatCompletionsClient(LLMClient):
                 raise ValueError("the environment variable OPENAI_API_VERSION must be set for Azure OpenAI service.")
             address = f"{address}?api-version={api_version}"
             headers = {"api-key": key}  # replace with Authorization: Bearer
+
         try:
             with requests.post(
                 address,
