@@ -114,11 +114,9 @@ class OpenAIChatCompletionsClient(LLMClient):
             output_throughput = tokens_received / total_request_time
 
         except Exception as e:
-            import traceback
-            stack_trace = traceback.format_exc()
             metrics[common_metrics.ERROR_MSG] = error_msg
             metrics[common_metrics.ERROR_CODE] = error_response_code
-            raise ValueError(f"Warning Or Error: {e} \n {stack_trace}")
+            print(f"Warning Or Error: {e}")
             print(error_response_code)
 
         metrics[common_metrics.INTER_TOKEN_LAT] = sum(time_to_next_token) #This should be same as metrics[common_metrics.E2E_LAT]. Leave it here for now
